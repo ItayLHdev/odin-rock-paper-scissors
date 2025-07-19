@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(220, 40%, 90%);
+}
+
+h1,
+p {
+    padding-bottom: 10px;
+    color: hsl(220, 40%, 10%);
+}
