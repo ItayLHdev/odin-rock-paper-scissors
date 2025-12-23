@@ -1,6 +1,11 @@
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const buttons = document.querySelectorAll("button");
+const resultsDisplay = document.querySelector("#results");
+
 const getComputerChoice = () => {
     switch (Math.floor(Math.random() * 3)) {
-        // no need to use break as `return` already exits the function
         case 0:
             return "rock";
         case 1:
@@ -20,28 +25,44 @@ const getHumanChoice = () => {
     }
 };
 
+const playRound = (humanChoice, computerChoice, display) => {
+    if (humanChoice === computerChoice) {
+        display.textContent = "Its a TIE"
+    }
+    else {
+        switch (humanChoice) {
+            case "rock":
+                display.textContent = (computerChoice === "paper") ? "YOU LOSE" : "YOU WIN";
+                break;
+            case "paper":
+                display.textContent = (computerChoice === "scissors") ? "YOU LOSE" : "YOU WIN";
+                break;
+            case "scissors":
+                display.textContent = (computerChoice === "rock") ? "YOU LOSE" : "YOU WIN";
+                break;
+        }
+    }
+
+};
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.id, getComputerChoice(), resultsDisplay)
+    })
+});
+
 const playGame = () => {
     let humanScore = 0, computerScore = 0;
-    const playRound = (humanChoice, computerChoice) => {
-        if ((humanChoice === "rock" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "rock")) {
-            console.log(`You Chose: ${humanChoice}.\nComputer Chose: ${computerChoice}.\n${computerChoice} beats ${humanChoice}.\nYou lose!`);
-            computerScore++;
-        } else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")) {
-            console.log(`You Chose: ${humanChoice}.\nComputer Chose: ${computerChoice}.\n${humanChoice} beats ${computerChoice}.\nYou win!`)
-            humanScore++
-        } else {
-            console.log(`You Chose: ${humanChoice}.\nComputer Chose: ${computerChoice}.\nIt's a TIE!`);
-        }
-    };
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-        console.log(`======================\nYour Score: ${humanScore}\nComputer Score: ${computerScore}\n======================`)
-    }
+
+    // for (let i = 0; i < 5; i++) {
+    //     playRound(getHumanChoice(), getComputerChoice());
+    //     console.log(`======================\nYour Score: ${humanScore}\nComputer Score: ${computerScore}\n======================`)
+    // }
     if (humanScore > computerScore) {
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$\nYou Won The Game :D\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        console.log("You Won The Game")
     } else if (humanScore < computerScore) {
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$\nYou lost The Game :(\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        console.log("You lost The Game :(")
     } else {
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$\nThe Game Ended With a TIE ^-^\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        console.log("The Game Ended With a TIE ^-^")
     }
-}
+};

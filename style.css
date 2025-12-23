@@ -9,19 +9,36 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: hsl(220, 40%, 90%);
 }
 
-h1,
-p,
-button {
-    margin-bottom: 10px;
-    color: hsl(220, 40%, 10%);
+.buttons {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
 }
 
 button {
-    padding: 1rem 0.5rem;
-    background-image: linear-gradient(to top right, hsl(200, 100%, 35%), hsl(190, 100%, 40%), hsl(190, 75%, 75%));
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+    font-size: 100px;
+    border: 0;
+    background-color: hsl(220, 40%, 60%);
+    border-radius: 10%;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: hsl(220, 40%, 55%);
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
