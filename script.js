@@ -3,6 +3,7 @@ const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const buttons = document.querySelectorAll("button");
 const resultsDisplay = document.querySelector("#results");
+const scoreDisplay = document.querySelector("#score")
 const humanChoiceDisplay = document.querySelector("#human-display")
 const computerChoiceDisplay = document.querySelector("#computer-display")
 
@@ -33,8 +34,7 @@ const playRound = (humanChoice, computerChoice,) => {
 
     if (humanChoice === computerChoice) {
         resultsDisplay.textContent = "Its a TIE"
-    }
-    else {
+    } else {
         switch (humanChoice) {
             case "rock":
                 resultsDisplay.textContent = (computerChoice === "paper") ? "YOU LOSE" : "YOU WIN";
@@ -48,26 +48,33 @@ const playRound = (humanChoice, computerChoice,) => {
         }
     }
 
+    const results = resultsDisplay.textContent
+
+    switch (results) {
+        case "YOU WIN":
+            playGame(1);
+            break;
+        case "YOU LOSE":
+            playGame(-1);
+            break;
+    }
 };
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         playRound(button.id, getComputerChoice())
-    })
+    });
 });
 
-const playGame = () => {
-    let humanScore = 0, computerScore = 0;
-
-    // for (let i = 0; i < 5; i++) {
-    //     playRound(getHumanChoice(), getComputerChoice());
-    //     console.log(`======================\nYour Score: ${humanScore}\nComputer Score: ${computerScore}\n======================`)
-    // }
-    if (humanScore > computerScore) {
-        console.log("You Won The Game")
-    } else if (humanScore < computerScore) {
-        console.log("You lost The Game :(")
-    } else {
-        console.log("The Game Ended With a TIE ^-^")
+let humanScore = 0, computerScore = 0;
+const playGame = (result) => {
+    switch (result) {
+        case 1:
+            humanScore++
+            break;
+        case -1:
+            computerScore++
+            break;
     }
+    scoreDisplay.textContent = `${humanScore} : ${computerScore}`
 };
