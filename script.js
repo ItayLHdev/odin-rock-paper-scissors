@@ -59,6 +59,15 @@ buttons.forEach((button) => {
 let humanScore = 0, computerScore = 0;
 const playGame = (result) => {
 
+    switch (result) {
+        case 1:
+            humanScore++
+            break;
+        case -1:
+            computerScore++
+            break;
+    }
+
     if (humanScore >= 5 || computerScore >= 5) {
         if (humanScore > computerScore) {
             resultsDisplay.textContent = "PLAYER WON 👨";
@@ -71,13 +80,5 @@ const playGame = (result) => {
         computerScore = 0;
     }
 
-    switch (result) {
-        case 1:
-            humanScore++
-            break;
-        case -1:
-            computerScore++
-            break;
-    }
     scoreDisplay.textContent = `${humanScore} : ${computerScore}`
 };
