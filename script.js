@@ -3,6 +3,8 @@ const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const buttons = document.querySelectorAll("button");
 const resultsDisplay = document.querySelector("#results");
+const humanChoiceDisplay = document.querySelector("#human-display")
+const computerChoiceDisplay = document.querySelector("#computer-display")
 
 const getComputerChoice = () => {
     switch (Math.floor(Math.random() * 3)) {
@@ -25,20 +27,23 @@ const getHumanChoice = () => {
     }
 };
 
-const playRound = (humanChoice, computerChoice, display) => {
+const playRound = (humanChoice, computerChoice,) => {
+    humanChoiceDisplay.textContent = `👨 Human Chose: ${humanChoice}`
+    computerChoiceDisplay.textContent = `🤖 Computer Chose: ${computerChoice}`
+
     if (humanChoice === computerChoice) {
-        display.textContent = "Its a TIE"
+        resultsDisplay.textContent = "Its a TIE"
     }
     else {
         switch (humanChoice) {
             case "rock":
-                display.textContent = (computerChoice === "paper") ? "YOU LOSE" : "YOU WIN";
+                resultsDisplay.textContent = (computerChoice === "paper") ? "YOU LOSE" : "YOU WIN";
                 break;
             case "paper":
-                display.textContent = (computerChoice === "scissors") ? "YOU LOSE" : "YOU WIN";
+                resultsDisplay.textContent = (computerChoice === "scissors") ? "YOU LOSE" : "YOU WIN";
                 break;
             case "scissors":
-                display.textContent = (computerChoice === "rock") ? "YOU LOSE" : "YOU WIN";
+                resultsDisplay.textContent = (computerChoice === "rock") ? "YOU LOSE" : "YOU WIN";
                 break;
         }
     }
@@ -47,7 +52,7 @@ const playRound = (humanChoice, computerChoice, display) => {
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        playRound(button.id, getComputerChoice(), resultsDisplay)
+        playRound(button.id, getComputerChoice())
     })
 });
 
