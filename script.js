@@ -18,22 +18,12 @@ const getComputerChoice = () => {
     }
 };
 
-const getHumanChoice = () => {
-    const choice = prompt("Rock, Paper or Scissors").toLowerCase();
-    if (choice === "rock" || choice === "paper" || choice === "scissors") {
-        return choice;
-    } else {
-        alert("invalid input, please try again.")
-        return getHumanChoice();
-    }
-};
-
 const playRound = (humanChoice, computerChoice,) => {
-    humanChoiceDisplay.textContent = `👨 Human Chose: ${humanChoice}`
-    computerChoiceDisplay.textContent = `🤖 Computer Chose: ${computerChoice}`
+    humanChoiceDisplay.textContent = `👨 Human Chose: ${humanChoice}`;
+    computerChoiceDisplay.textContent = `🤖 Computer Chose: ${computerChoice}`;
 
     if (humanChoice === computerChoice) {
-        resultsDisplay.textContent = "Its a TIE"
+        resultsDisplay.textContent = "Its a TIE";
     } else {
         switch (humanChoice) {
             case "rock":
@@ -48,7 +38,7 @@ const playRound = (humanChoice, computerChoice,) => {
         }
     }
 
-    const results = resultsDisplay.textContent
+    const results = resultsDisplay.textContent;
 
     switch (results) {
         case "YOU WIN":
@@ -68,6 +58,19 @@ buttons.forEach((button) => {
 
 let humanScore = 0, computerScore = 0;
 const playGame = (result) => {
+
+    if (humanScore >= 5 || computerScore >= 5) {
+        if (humanScore > computerScore) {
+            resultsDisplay.textContent = "PLAYER WON 👨";
+        } else if (humanScore < computerScore) {
+            resultsDisplay.textContent = "COMPUTER WON 🤖";
+        } else {
+            resultsDisplay.textContent = "the game ended in a TIE";
+        }
+        humanScore = 0;
+        computerScore = 0;
+    }
+
     switch (result) {
         case 1:
             humanScore++
