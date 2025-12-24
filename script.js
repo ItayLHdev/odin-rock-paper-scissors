@@ -8,14 +8,9 @@ const humanChoiceDisplay = document.querySelector("#human-display")
 const computerChoiceDisplay = document.querySelector("#computer-display")
 
 const getComputerChoice = () => {
-    switch (Math.floor(Math.random() * 3)) {
-        case 0:
-            return "rock";
-        case 1:
-            return "paper";
-        case 2:
-            return "scissors";
-    }
+    const choices = ["rock", "paper", "scissors"]
+    const randomNum = Math.floor(Math.random() * 3)
+    return choices[randomNum]
 };
 
 const playRound = (humanChoice, computerChoice,) => {
