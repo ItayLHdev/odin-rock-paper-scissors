@@ -54,14 +54,8 @@ buttons.forEach((button) => {
 let humanScore = 0, computerScore = 0;
 const playGame = (result) => {
 
-    switch (result) {
-        case 1:
-            humanScore++
-            break;
-        case -1:
-            computerScore++
-            break;
-    }
+    if (result === 1) humanScore++;
+    else if (result === -1) computerScore++
 
     if (humanScore >= 5 || computerScore >= 5) {
         if (humanScore > computerScore) {
