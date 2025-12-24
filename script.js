@@ -1,6 +1,3 @@
-const rock = document.querySelector("#rock");
-const paper = document.querySelector("#paper");
-const scissors = document.querySelector("#scissors");
 const buttons = document.querySelectorAll("button");
 const resultsDisplay = document.querySelector("#results");
 const scoreDisplay = document.querySelector("#score")
@@ -12,6 +9,12 @@ const getComputerChoice = () => {
     const randomNum = Math.floor(Math.random() * 3)
     return choices[randomNum]
 };
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.id, getComputerChoice())
+    });
+});
 
 const playRound = (humanChoice, computerChoice,) => {
     humanChoiceDisplay.textContent = `👨 Human Chose: ${humanChoice}`;
@@ -44,12 +47,6 @@ const playRound = (humanChoice, computerChoice,) => {
             break;
     }
 };
-
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        playRound(button.id, getComputerChoice())
-    });
-});
 
 let humanScore = 0, computerScore = 0;
 const playGame = (result) => {
